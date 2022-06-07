@@ -15,9 +15,6 @@ public class SignUpForm {
     @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9_-]{3,20}$")
     private String username;
 
-    @NumberFormat
-    private int phoneNumber;
-
     @NotBlank
     @Length(min = 8, max =50)
     private String password;

@@ -1,6 +1,7 @@
 package com.example.demo.module.account;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,7 +17,7 @@ public class AccountService implements UserDetailsService {
 
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
-//    private final ModelMapper
+    private final ModelMapper modelMapper;
 
     @Override
     @Transactional
@@ -33,7 +34,7 @@ public class AccountService implements UserDetailsService {
 
     private Account saveNewAccount(SignUpForm signUpForm) {
         signUpForm.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
-//        Account account = modelMapper.map(signUpForm, Account.class);
-//        return accountRepository.save(account);
+        Account account = modelMapper.map(signUpForm, Account.class);
+        return accountRepository.save(account);
     }
 }
